@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topicos.Codigo.Warming", "Topicos.Codigo.Warming\Topicos.Codigo.Warming.csproj", "{C276C7BF-C184-4589-A54B-B8BAEE911222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topicos.Codigo.Dados.BL", "Topicos.Codigo.Dados.BL\Topicos.Codigo.Dados.BL.csproj", "{E8F8A057-2CB1-446A-9702-AB5EEFE87CD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C276C7BF-C184-4589-A54B-B8BAEE911222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C276C7BF-C184-4589-A54B-B8BAEE911222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C276C7BF-C184-4589-A54B-B8BAEE911222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C276C7BF-C184-4589-A54B-B8BAEE911222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8F8A057-2CB1-446A-9702-AB5EEFE87CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F8A057-2CB1-446A-9702-AB5EEFE87CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F8A057-2CB1-446A-9702-AB5EEFE87CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F8A057-2CB1-446A-9702-AB5EEFE87CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91E8CF80-5641-441F-9AD2-0E96B3A43359}
+	EndGlobalSection
+EndGlobal
