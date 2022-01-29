@@ -1,0 +1,46 @@
+enum Palo { 0: Treboles; 1: Diamantes; 2: Espadas; 3: Corazones }
+
+const string IconosPalo[] = new {"♠", "♦", "♣", "♥"};
+cree una clase llamada Carta la cual contiene los atributos de una carta de naipe
+	- Palo palo
+	- string valor
+	- int número (computado)
+		J --> 10
+		A --> 1
+		K --> 10
+		5 --> 5
+	- string Display ()
+		♠J
+		♦A
+		♣K
+		♥5
+	- constructor (palo, valor)
+	- string ToString () overrides
+		+ 3 de corazones
+		+ rey de espadas
+		+ reina de flores
+		+ jota de tréboles
+		+ as de oros
+		
+haga una clase llamada Baraja la cual contiene un arreglo de 52 cartas correspondientes al naipe completo.
+	- constructor ()
+	- constructor (string)
+		+ el string es un código de cheater.
+		+ manejamos códigos constantes para cheater
+			+ "iewqriuasoiuwqerkj//&&%JDIDOIUELKJA(/Ä+U[ë" --> cheat de una carta
+			+ "siuqweoiuslkjqw(/)(/LKJl#%#"#"HJJSLKJSLKJÑ" --> cheat de dos cartas
+	- Método Barajar
+	- Carta DemeUnaCarta ()
+		+ pop ()
+			+ la pasa al final de la baraja
+	- Carta [] DemeUnaCartaConCheat ();
+		+ pop ()
+		+ copia las n cartas que tiene permiso de hacer cheat pero esas cartas se quedan en el mazo
+	- contador de cartas sacadas
+		+ 25 cartas  -- > baraja automáticamente
+		
+haga una aplicación de consola que cree una mano de naipe y liste ene cartas. menú para
+	+ barajar
+	+ deme una carta
+	+ deme una carta con cheat
+	+ salir
