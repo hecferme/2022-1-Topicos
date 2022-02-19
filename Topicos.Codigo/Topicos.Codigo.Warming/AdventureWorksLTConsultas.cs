@@ -119,7 +119,7 @@ namespace Topicos.Codigo.Warming
 
         private void ImprimaCustomerDetallado(AdventureWorksLT.Model.Models.Customer elCustomer)
         {
-            System.Console.WriteLine($"Id: {elCustomer.CustomerId} Nombre: {elCustomer.FullName} City: {elCustomer.CustomerAddresses.   ().Address.City}");
+            System.Console.WriteLine($"Id: {elCustomer.CustomerId} Nombre: {elCustomer.FullName} City: {elCustomer.CustomerAddresses.FirstOrDefault().Address.City}");
         }
 
         private string? CapturarOpcion()
