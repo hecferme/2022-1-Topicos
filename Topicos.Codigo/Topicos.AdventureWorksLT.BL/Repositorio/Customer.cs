@@ -47,7 +47,7 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
             var resultado = _contexto.Customers.Include(c => c.CustomerAddresses).ThenInclude(ca => ca.Address).Where(
                 c => c.CustomerAddresses.Any(a => a.Address.CountryRegion.Contains (hilera)))
                 .Skip(_pagesize * pageNumber).Take(_pagesize).
-                OrderBy(c => c.FirstName).ToList();
+                OrderBy(c => c.CustomerId).ToList();
             return resultado;
         }
 

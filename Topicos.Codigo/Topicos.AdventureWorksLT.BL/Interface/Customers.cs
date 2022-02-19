@@ -21,5 +21,12 @@ namespace Topicos.AdventureWorksLT.BL
             var elResultado = elRepositorio.BuscarPorNombreOApellido(hilera);
             return elResultado;
         }
+
+        public IList<Model.Models.Customer> BuscarPorCountry(string hilera, int pageNumber = 0)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = elRepositorio.BuscarPorCountry(hilera, pageNumber);
+            return elResultado;
+        }
     }
 }

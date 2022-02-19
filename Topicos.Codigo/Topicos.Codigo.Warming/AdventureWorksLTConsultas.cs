@@ -27,10 +27,45 @@ namespace Topicos.Codigo.Warming
                     break;
                 case "2": ConsultarPorNombreOApellido();
                     break;
+                case "3": ConsultarPorCountry();
+                    break;
                 case "0":
                     break;
                 default: System.Console.WriteLine("Opción errónea");
                     break;
+            }
+        }
+
+        private void ConsultarPorCountry()
+        {
+            var customerCriteria = string.Empty;
+            var pageNumberString = string.Empty;
+            var pageNumber = 0;
+            while (customerCriteria == string.Empty)
+            {
+                System.Console.Write("Digite el Country de búsqueda para Customers: ");
+                customerCriteria = System.Console.ReadLine();
+                System.Console.Write("Digite el número de página deseada (Default) 0: ");
+                pageNumberString = System.Console.ReadLine();
+            }
+            if (pageNumberString != string.Empty)
+            {
+                pageNumber = int.Parse(pageNumberString);
+            }
+
+
+            var laLogicaDeNegocio = new AdventureWorksLT.BL.Customers();
+            var losCustomers = laLogicaDeNegocio.BuscarPorCountry(customerCriteria, pageNumber);
+            if (losCustomers.Count == 0)
+            {
+                System.Console.WriteLine("Customers no encontrados.");
+            }
+            else
+            {
+                foreach (var customer in losCustomers)
+                {
+                    ImprimaCustomerDetallado(customer);
+                }
             }
         }
 
@@ -82,6 +117,11 @@ namespace Topicos.Codigo.Warming
             System.Console.WriteLine($"Id: {elCustomer.CustomerId} Nombre: {elCustomer.FullName} Teléfono: {elCustomer.Phone}");
         }
 
+        private void ImprimaCustomerDetallado(AdventureWorksLT.Model.Models.Customer elCustomer)
+        {
+            System.Console.WriteLine($"Id: {elCustomer.CustomerId} Nombre: {elCustomer.FullName} City: {elCustomer.CustomerAddresses.   ().Address.City}");
+        }
+
         private string? CapturarOpcion()
         {
             System.Console.Write("Digite la opción deseada: ");
@@ -94,6 +134,7 @@ namespace Topicos.Codigo.Warming
             System.Console.WriteLine("Menú principal");
             System.Console.WriteLine("1. Consultar Customer por Id");
             System.Console.WriteLine("2. Consultar Customers por Nombre o Apellido");
+            System.Console.WriteLine("3. Consultar Customers por Country");
             System.Console.WriteLine("0. Salir");
 
         }
