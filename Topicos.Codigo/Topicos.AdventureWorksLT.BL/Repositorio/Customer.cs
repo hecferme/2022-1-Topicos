@@ -11,7 +11,24 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
     internal class Customer
     {
         private readonly db_adventureworksltContext _contexto = new();
+        private readonly int _pageNumber = 0;
         private readonly int _pagesize = 10;
+
+        public async Task<IList<Model.Models.Customer>> ListarAsync()
+        {
+            var resultado = await _contexto.Customers
+                .Skip(_pagesize * _pageNumber).Take(_pagesize).
+                OrderBy(c => c.FirstName).ToListAsync();
+            return resultado;
+        }
+        public IList<Model.Models.Customer> Listar()
+        {
+            var resultado = _contexto.Customers
+                .Skip(_pagesize * _pageNumber).Take(_pagesize).
+                OrderBy(c => c.FirstName).ToList();
+            return resultado;
+        }
+
         public Customer()
         {
         }
@@ -24,6 +41,11 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
         public Model.Models.Customer? BuscarPorId (int id)
         {
             var resultado = _contexto.Customers.Find(id);
+            return resultado;
+        }
+        public async Task<Model.Models.Customer?> BuscarPorIdAsync(int id)
+        {
+            var resultado = await _contexto.Customers.FindAsync(id);
             return resultado;
         }
 

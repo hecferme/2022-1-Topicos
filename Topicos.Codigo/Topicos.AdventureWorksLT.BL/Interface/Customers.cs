@@ -8,10 +8,31 @@ namespace Topicos.AdventureWorksLT.BL
 {
     public class Customers
     {
+        public IList<Model.Models.Customer> Listar()
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = elRepositorio.Listar();
+            return elResultado;
+        }
+
+        public async Task<IList<Model.Models.Customer>> ListarAsync()
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.ListarAsync();
+            return elResultado;
+        }
+
         public Model.Models.Customer? BuscarPorId(int id)
         {
             var elRepositorio = new Repositorio.Customer();
             var elResultado = elRepositorio.BuscarPorId(id);
+            return elResultado;
+        }
+
+        public async Task<Model.Models.Customer?> BuscarPorIdAsync(int id)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.BuscarPorIdAsync(id);
             return elResultado;
         }
 

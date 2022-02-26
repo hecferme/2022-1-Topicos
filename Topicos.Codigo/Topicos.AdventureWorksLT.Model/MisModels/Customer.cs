@@ -39,7 +39,7 @@ namespace Topicos.AdventureWorksLT.Model.Models
                 if (! string.IsNullOrEmpty(this.EmailAddress))
                 {
                     var posicionArroba = this.EmailAddress.IndexOf('@');
-                    resultado = this.EmailAddress.Substring(posicionArroba + 1, 100);
+                    resultado = this.EmailAddress.Substring(posicionArroba + 1);
                 }
                 return resultado;
             } 
