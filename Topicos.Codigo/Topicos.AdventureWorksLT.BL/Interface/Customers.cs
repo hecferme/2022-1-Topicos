@@ -29,6 +29,13 @@ namespace Topicos.AdventureWorksLT.BL
             return elResultado;
         }
 
+        public Model.Models.CustomerDTO? BuscarPorIdDTO(int id)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = elRepositorio.BuscarPorIdDTO(id);
+            return elResultado;
+        }
+
         public async Task<Model.Models.Customer?> BuscarPorIdAsync(int id)
         {
             var elRepositorio = new Repositorio.Customer();
@@ -43,10 +50,22 @@ namespace Topicos.AdventureWorksLT.BL
             return elResultado;
         }
 
+        public async Task<IList<Model.Models.Customer>> BuscarPorNombreOApellidoAsync(string hilera, int pageNumber = 0)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.BuscarPorNombreOApellidoAsync(hilera);
+            return elResultado;
+        }
         public IList<Model.Models.Customer> BuscarPorCountry(string hilera, int pageNumber = 0)
         {
             var elRepositorio = new Repositorio.Customer();
             var elResultado = elRepositorio.BuscarPorCountry(hilera, pageNumber);
+            return elResultado;
+        }
+        public async Task<IList<Model.Models.Customer>> BuscarPorCountryAsync(string hilera, int pageNumber = 0)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.BuscarPorCountryAsync(hilera, pageNumber);
             return elResultado;
         }
     }

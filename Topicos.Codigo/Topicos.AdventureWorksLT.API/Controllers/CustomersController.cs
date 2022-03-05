@@ -25,10 +25,10 @@ namespace Topicos.AdventureWorksLT.API.Controllers
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(int id)
+        public ActionResult<CustomerDTO> GetCustomer(int id)
         {
             var elServicio = new Topicos.AdventureWorksLT.BL.Customers();
-            var elResultado = await elServicio.BuscarPorIdAsync(id);
+            var elResultado = elServicio.BuscarPorIdDTO(id);
 
             if (elResultado == null)
             {

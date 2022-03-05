@@ -71,6 +71,7 @@ namespace Topicos.Codigo.Warming
 
         private void ConsultarPorNombreOApellido()
         {
+            var cantidadRegistros = 0;
             var customerCriteria = string.Empty;
             while (customerCriteria == string.Empty)
             {
