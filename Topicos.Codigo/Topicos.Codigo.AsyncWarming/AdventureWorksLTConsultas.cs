@@ -1,33 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Topicos.Codigo.Warming
+namespace Topicos.Codigo.AsyncWarming
 {
     public class AdventureWorksLTConsultas
     {
-        public void MenuPrincipal ()
+        public async Task MenuPrincipal ()
         {
             string? opcion = String.Empty;
             while (opcion != "0")
             {
                 DesplegarMenu();
                 opcion = CapturarOpcion();
-                EjecutarOpcion(opcion);
+                await EjecutarOpcion(opcion);
             }
         }
 
-        private void EjecutarOpcion(string? opcion)
+        private async Task EjecutarOpcion(string? opcion)
         {
             switch (opcion)
             {
                 case "1": ConsultarPorId();
                     break;
-                case "2": ConsultarPorNombreOApellido();
+                case "2": await ConsultarPorNombreOApellidoAsync();
                     break;
-                case "3": ConsultarPorCountry();
+                case "3": await ConsultarPorCountryAsync();
                     break;
                 case "0":
                     break;
@@ -36,26 +37,35 @@ namespace Topicos.Codigo.Warming
             }
         }
 
-        private void ConsultarPorCountry()
+        private async Task ConsultarPorCountryAsync()
         {
             var customerCriteria = string.Empty;
             var pageNumberString = string.Empty;
             var pageNumber = 0;
-            while (customerCriteria == string.Empty)
+            while (customerCriteria == null || customerCriteria == string.Empty)
             {
                 System.Console.Write("Digite el Country de búsqueda para Customers: ");
                 customerCriteria = System.Console.ReadLine();
                 System.Console.Write("Digite el número de página deseada (Default) 0: ");
                 pageNumberString = System.Console.ReadLine();
             }
-            if (pageNumberString != string.Empty)
+            if (pageNumberString != null && pageNumberString != string.Empty)
             {
                 pageNumber = int.Parse(pageNumberString);
             }
 
-
             var laLogicaDeNegocio = new AdventureWorksLT.BL.Customers();
-            var losCustomers = laLogicaDeNegocio.BuscarPorCountry(customerCriteria, pageNumber);
+            var timer = new Stopwatch();
+            timer.Start();
+            System.Console.WriteLine($"Iniciando la consulta en {timer.Elapsed}....");
+
+            var cantidadCustomers = await laLogicaDeNegocio.ContarPorCountryAsync(customerCriteria);
+            var losCustomers = await laLogicaDeNegocio.BuscarPorCountryAsync(customerCriteria, pageNumber);
+
+            timer.Stop();
+            System.Console.WriteLine($"Consulta finalizada en {timer.Elapsed}....");
+
+            System.Console.WriteLine($"La cantidad total de registros es {cantidadCustomers}.");
             if (losCustomers.Count == 0)
             {
                 System.Console.WriteLine("Customers no encontrados.");
@@ -69,16 +79,27 @@ namespace Topicos.Codigo.Warming
             }
         }
 
-        private void ConsultarPorNombreOApellido()
+        private async Task ConsultarPorNombreOApellidoAsync()
         {
             var customerCriteria = string.Empty;
-            while (customerCriteria == string.Empty)
+            while (customerCriteria == null || customerCriteria == string.Empty)
             {
                 System.Console.Write("Digite el criterio de búsqueda de Customers: ");
                 customerCriteria = System.Console.ReadLine();
             }
             var laLogicaDeNegocio = new AdventureWorksLT.BL.Customers();
-            var losCustomers = laLogicaDeNegocio.BuscarPorNombreOApellido(customerCriteria);
+
+            var timer = new Stopwatch();
+            timer.Start();
+            System.Console.WriteLine($"Iniciando la consulta en {timer.Elapsed}....");
+
+            var cantidadCustomers = await laLogicaDeNegocio.ContarPorNombreOApellidoAsync(customerCriteria);
+            var losCustomers = await laLogicaDeNegocio.BuscarPorNombreOApellidoAsync(customerCriteria);
+
+            timer.Stop();
+            System.Console.WriteLine($"Consulta finalizada en {timer.Elapsed}....");
+
+            System.Console.WriteLine($"La cantidad total de registros es {cantidadCustomers}.");
             if (losCustomers.Count == 0)
             {
                 System.Console.WriteLine("Customers no encontrados.");
