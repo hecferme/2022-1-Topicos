@@ -15,6 +15,13 @@ namespace Topicos.AdventureWorksLT.BL
             return elResultado;
         }
 
+        public async Task<int> ContarAsync()
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.ContarAsync();
+            return elResultado;
+        }
+
         public async Task<IList<Model.Models.Customer>> ListarAsync()
         {
             var elRepositorio = new Repositorio.Customer();
@@ -50,18 +57,34 @@ namespace Topicos.AdventureWorksLT.BL
             return elResultado;
         }
 
+        public async Task<int> ContarPorNombreOApellidoAsync(string hilera)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.ContarPorNombreOApellidoAsync(hilera);
+            return elResultado;
+        }
+
         public async Task<IList<Model.Models.Customer>> BuscarPorNombreOApellidoAsync(string hilera, int pageNumber = 0)
         {
             var elRepositorio = new Repositorio.Customer();
             var elResultado = await elRepositorio.BuscarPorNombreOApellidoAsync(hilera);
             return elResultado;
         }
+
         public IList<Model.Models.Customer> BuscarPorCountry(string hilera, int pageNumber = 0)
         {
             var elRepositorio = new Repositorio.Customer();
             var elResultado = elRepositorio.BuscarPorCountry(hilera, pageNumber);
             return elResultado;
         }
+
+        public async Task<int> ContarPorCountryAsync(string hilera)
+        {
+            var elRepositorio = new Repositorio.Customer();
+            var elResultado = await elRepositorio.ContarPorCountryAsync(hilera);
+            return elResultado;
+        }
+
         public async Task<IList<Model.Models.Customer>> BuscarPorCountryAsync(string hilera, int pageNumber = 0)
         {
             var elRepositorio = new Repositorio.Customer();

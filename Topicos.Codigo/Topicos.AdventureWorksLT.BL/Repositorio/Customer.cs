@@ -16,6 +16,12 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
         private readonly int _pagesize = 10;
         private readonly Mapper _mapper;
 
+        public async Task<int> ContarAsync()
+        {
+            var resultado = await _contexto.Customers.CountAsync();
+            return resultado;
+        }
+
         public async Task<IList<Model.Models.Customer>> ListarAsync()
         {
             var resultado = await _contexto.Customers
@@ -23,6 +29,7 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
                 OrderBy(c => c.FirstName).ToListAsync();
             return resultado;
         }
+
         public IList<Model.Models.Customer> Listar()
         {
             var resultado = _contexto.Customers
@@ -83,6 +90,14 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
             return resultado;
         }
 
+        public async Task<int> ContarPorNombreOApellidoAsync(string hilera)
+        {
+           var resultado = await _contexto.Customers.Where(
+                c => c.FirstName.Contains(hilera) || c.LastName.Contains(hilera)).CountAsync();
+            return resultado;
+        }
+
+
         public async Task<IList<Model.Models.Customer>> BuscarPorNombreOApellidoAsync(string hilera, int pageNumber = 0)
         {
             var resultado = await _contexto.Customers.Where(
@@ -106,6 +121,15 @@ namespace Topicos.AdventureWorksLT.BL.Repositorio
                 OrderBy(c => c.CustomerId).ToList();
             return resultado;
         }
+
+        public async Task<int> ContarPorCountryAsync(string hilera)
+        {
+            var resultado = await _contexto.Customers.Include(c => c.CustomerAddresses).ThenInclude(ca => ca.Address).Where(
+                c => c.CustomerAddresses.Any(a => a.Address.CountryRegion.Contains(hilera)))
+                .CountAsync();
+            return resultado;
+        }
+
 
         public async Task<IList<Model.Models.Customer>> BuscarPorCountryAsync(string hilera, int pageNumber = 0)
         {
